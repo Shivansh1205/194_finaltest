@@ -1,38 +1,42 @@
 pipeline {
-    agent any
+    agent any  
 
     tools {
         jdk 'jdk'
-        maven 'maven'
+        maven 'maven'  
     }
-
     stages {
-
         stage('Build') {
             steps {
-                sh 'mvn clean compile'
+                sh 'mvn clean package'  
             }
         }
 
         stage('Test') {
             steps {
-                sh 'mvn test'
+                sh 'mvn test'  
             }
         }
 
-        stage('Package') {
+        
+        
+       
+        stage('Run Application') {
             steps {
-                sh 'mvn package'
+                
+                sh 'java -jar target/col-1.0-SNAPSHOT.jar'
             }
         }
+
+        
     }
 
     post {
         success {
-            echo 'Build Successful '
+            echo 'Build and deployment successful!'
         }
         failure {
-            echo 'Build Failed '
+            echo 'Build failed!'
         }
     }
 }

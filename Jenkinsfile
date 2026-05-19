@@ -24,7 +24,7 @@ pipeline {
         stage('Run Application') {
             steps {
                 
-                sh 'java -jar target/col-1.0-SNAPSHOT.jar'
+                sh 'java -cp target/194_finaltest-1.0-SNAPSHOT.jar com.example.App'
             }
         }
 
